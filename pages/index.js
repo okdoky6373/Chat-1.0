@@ -1,23 +1,38 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <style>
+        #chatbox {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbox"></div>
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="message" placeholder="Message">
+    <button onclick="sendMessage()">Send</button>
 
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <script>
+        function sendMessage() {
+            var name = document.getElementById("name").value;
+            var message = document.getElementById("message").value;
 
-      <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
+            if (name && message) {
+                var chatbox = document.getElementById("chatbox");
+                chatbox.innerHTML += "<p><strong>" + name + ":</strong> " + message + "</p>";
 
-      <Footer />
-    </div>
-  )
-}
+                // Send the message to the server here (using AJAX, WebSocket, or any other method)
+
+                document.getElementById("message").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
+
